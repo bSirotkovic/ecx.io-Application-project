@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<h1>Zatrazili ste prikaz sljedecih pokemona</h1>
+    <table>
+        <tr th:each="pokemon : ${list}">
+        	<td th:text="${pokemon.id}">default</td>
+        	<td th:text="${pokemon.name}">default</td>
+        	<td th:text="${pokemon.type}">default</td>
+    	</tr>
+    </table>
+
+
+</body>
+</html>
