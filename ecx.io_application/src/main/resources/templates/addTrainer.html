@@ -6,8 +6,11 @@
 <body>
 
 <form action="#" th:action="@{/trainer}" th:object="${trainer}" method="post">
+    ID:
     <input type="text" th:field="*{id}" />
+    First name:
     <input type="text" th:field="*{firstName}" />
+    Last name:
     <input type="text" th:field="*{lastName}" />
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>

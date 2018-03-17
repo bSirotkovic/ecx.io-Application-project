@@ -20,7 +20,13 @@ public class PokemonDAO {
 	public void addPokemon(Pokemon pokemon) {
 		MongoCollection<Document> col = mongodb.getCollection("Pokemon");
 		
-		col.insertOne(pokemon.getDocumentRepresentation());
+		//Da sprijecimo dodavanje pokemona s postojecim ID.
+		try {
+			getSpecificPokemon(pokemon.id);
+		} catch(Exception e) {			
+			col.insertOne(pokemon.getDocumentRepresentation());				
+		}
+			
 	}
 	
 	public ArrayList<Pokemon> getAllPokemons() {

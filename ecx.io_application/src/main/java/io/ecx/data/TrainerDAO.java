@@ -20,7 +20,13 @@ private MongoDatabase mongodb;
 	public void addTrainer(Trainer trainer) {
 		MongoCollection<Document> col = mongodb.getCollection("Trainer");
 		
-		col.insertOne(trainer.getDocumentRepresentation());
+		//Da sprijecimo dodavanje trenera s postojecim ID.
+		try {
+			getSpecificTrainer(trainer.id);
+		} catch(Exception e) {			
+			col.insertOne(trainer.getDocumentRepresentation());				
+		}
+		
 	}
 	
 	public ArrayList<Trainer> getAllTrainers() {
@@ -34,7 +40,7 @@ private MongoDatabase mongodb;
 		return toReturn;
 	}
 	
-	public Trainer getSpecificTrainer(int id) {
+	public Trainer getSpecificTrainer(int id){
 		MongoCollection<Document> col = mongodb.getCollection("Trainer");
 		
 		Document queryDoc = new Document("id", id);
